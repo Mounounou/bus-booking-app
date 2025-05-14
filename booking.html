@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus Seat Booking</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+    .bus {
+      margin: auto;
+      width: 400px;
+      padding: 20px;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px #999;
+    }
+    .seats {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    .seat {
+      width: 50px;
+      height: 50px;
+      background-color: #4CAF50; /* green = available */
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: white;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+    .seat.selected {
+      background-color: #FFA500; /* orange when selected */
+    }
+    .seat.unavailable {
+      background-color: red; /* red = unavailable */
+      cursor: not-allowed;
+    }
+    .aisle {
+      visibility: hidden;
+    }
+    .confirm-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 18px;
+      border: none;
+      background-color: #007bff;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .confirm-btn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Select Your Seats</h1>
+
+<!-- Display Origin and Destination -->
+<p id="originDisplay"></p>
+<p id="destinationDisplay"></p>
+
+<div class="bus">
+  <div class="seats" id="seatsContainer">
+    <!-- Seats will be generated dynamically -->
+  </div>
+</div>
+
+<button class="confirm-btn" onclick="confirmSeats()">Confirm Booking</button>
+
+<script>
+// Get query params (origin and destination)
+const urlParams = new URLSearchParams(window.location.search);
+const origin = urlParams.get('origin');
+const destination = urlParams.get('destination');
+
+// Check if parameters exist
+if (origin && destination) {
+  // Display the values of origin and destination
+  document.getElementById('originDisplay').textContent = `Origin: ${origin}`;
+  document.getElementById('destinationDisplay').textContent = `Destination: ${destination}`;
+} else {
+  document.getElementById('originDisplay').textContent = "Origin: Not selected";
+  document.getElementById('destinationDisplay').textContent = "Destination: Not selected";
+}
+
+// Dynamically generate the seats (same as before)
+const seatsContainer = document.getElementById('seatsContainer');
+
+for (let i = 1; i <= 48; i++) {
+  const seat = document.createElement('div');
+  seat.classList.add('seat');
+  seat.innerText = i;
+
+  // Every 2 seats, insert an aisle (after seat 2, 4, 6, etc.)
+  if ((i - 1) % 4 === 2) {
+    const aisle = document.createElement('div');
+    aisle.classList.add('aisle');
+    seatsContainer.appendChild(aisle);
+  }
+
+  seat.addEventListener('click', () => {
+    if (!seat.classList.contains('unavailable')) {
+      seat.classList.toggle('selected');
+    }
+  });
+
+  seatsContainer.appendChild(seat);
+}
+
+// Confirm selected seats
+function confirmSeats() {
+  const selectedSeats = document.querySelectorAll('.seat.selected');
+  if (selectedSeats.length === 0) {
+    alert('Please select at least one seat!');
+    return;
+  }
+  const seatNumbers = Array.from(selectedSeats).map(seat => seat.innerText).join(', ');
+  alert(`You have booked seat(s): ${seatNumbers}`);
+}
+</script>
+
+</body>
+</html>

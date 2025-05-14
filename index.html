@@ -1,37 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UFT-8" />
-    <meta name="viewport " content="width=device-width, initial-scale=1.0"/>
-    <title>busbooking</title>
-    <link rel="stylesheet" href="style.css"/>
-    </head>
-    <body>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bus Booking App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Bus Booking</h1>
+      <nav>
+        <!-- Update the Features link to point to the correct features.html page -->
+        <a href="features.html">Features</a>
+        <a href="contact.html">Contact</a> <!-- assuming you will have a contact.html page -->
+        <a href="#" id="loginBtn">Log In</a>
+      </nav>
+    </div>
+  </header>
+  
+          
+          <!-- Language Selector -->
+          <div class="language-selector">
+            <select id="language-select">
+              <option value="en">English</option>
+              <option value="fr">Français</option>
+              <option value="ar">عربي</option>
+            </select>
+          </div>
+        </div>
+    </header>
 
-   <header class="hero">
-    <h1>busbooking</h1>
-    <p>Easy and convenient ticket booking</p>
-    <button>Book Now</button>
-   </header>
+  <section class="hero">
+    <div class="container hero-overlay">
+      <img src="image/image 1.jpg" alt="Hero Background" class="hero-background" />
+      <div class="hero-text">
+        <h2>Book Your Bus Ticket in Seconds</h2>
+        <p>Fast, reliable, and comfortable travel booking platform.</p>
+        <button class="btn btn-primary" onclick="location.href='#book-trip'">Book Now</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="features">
+    <h2>Why Choose Bus booking?</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <h3> Easy Booking</h3>
+        <p>Book your bus ticket in just a few clicks with a smooth and intuitive interface.</p>
+      </div>
+      <div class="feature-card">
+        <h3> Live Tracking</h3>
+        <p>Track your bus in real-time and stay informed every step of the way.</p>
+      </div>
+      <div class="feature-card">
+        <h3> Instant Tickets</h3>
+        <p>Get your tickets delivered instantly via email and in your dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="booking-form" id="book-trip">
+    <div class="container booking-overlay">
+      <img src="image/image 2.jpg" alt="Booking Background" class="booking-background" />
+      <div class="booking-text">
+        <h2>Book a Trip</h2>
+        <form id="bookingForm">
+          
+          <label for="origin">Origin:</label>
+          <select id="origin" name="origin" class="select-large" required>
+            <option value="">-- Select Origin --</option>
+            <option value="Casablanca">Casablanca</option>
+            <option value="Rabat">Rabat</option>
+            <option value="Marrakech">Marrakech</option>
+            <option value="Fes">Fes</option>
+            <option value="Tangier">Tangier</option>
+            <option value="Agadir">Agadir</option>
+            <option value="Oujda">Oujda</option>
+            <option value="Meknes">Meknes</option>
+            <option value="Laayoune">Laayoune</option>
+            <option value="Tétouan">Tétouan</option>
+          </select>
+          <br><br>
+          <label for="destination">Destination:</label>
+          <select id="destination" name="destination" class="select-large" required>
+            <option value="">-- Select Destination --</option>
+            <option value="Casablanca">Casablanca</option>
+            <option value="Rabat">Rabat</option>
+            <option value="Marrakech">Marrakech</option>
+            <option value="Fes">Fes</option>
+            <option value="Tangier">Tangier</option>
+            <option value="Agadir">Agadir</option>
+            <option value="Oujda">Oujda</option>
+            <option value="Meknes">Meknes</option>
+            <option value="Laayoune">Laayoune</option>
+            <option value="Tétouan">Tétouan</option>
+          </select>
+          <button class="btn btn-primary" onclick="location.href='booking.html'">Book Now</button>
+
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2025 Bus Booking. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="privacy policy.html">Privacy policy</a> <!-- LINK added -->
+        <a href="terms.html">Conditions</a>
+      
+        
+
+      </div>
+    </div>
+  </footer>
+  
+  
+
+  <!-- Modal (Hidden by default) -->
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login</h2>
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required>
+
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required>
+
+        <button type="submit">Log In</button>
+        
+        <!-- Links for Forgot Password and Create Account -->
+        <div class="links">
+          <a href="#" id="forgotPassword">Forgot Password?</a> | 
+          <a href="#" id="createAccount">Create an Account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div id="forgotPasswordModal" class="modal">
+    <div class="modal-content">
+      <h2>Reset Password</h2>
+      <form id="forgotPasswordForm">
+        <label for="recoveryEmail">Enter your email address</label>
+        <input type="email" id="recoveryEmail" name="recoveryEmail" required>
+        <button type="submit">Send Reset Link</button>
+      </form>
+    </div>
+  </div>
+
+<!-- Create Account Modal -->
+<div id="createAccountModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Create Account</h2>
+    <form id="createAccountForm">
+      <label for="firstName">First Name:</label>
+      <input type="text" id="firstName" placeholder="First Name" required>
+
+      <label for="lastName">Last Name:</label>
+      <input type="text" id="lastName" placeholder="Last Name" required>
+
+      <label for="phoneNumber">Phone Number:</label>
+      <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
+
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Username" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Email" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Password" required>
+
+      <!-- New Confirm Password Field -->
+      <label for="confirmPassword">Confirm Password:</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+      <button type="submit">Create Account</button>
+    </form>
+  </div>
+</div>
 
 
-   <section class="features">
-     <h2>Why Choose Us?</h2>
-     <ul><li>Secure Payements</li> 
-     </section>
 
-<section class="testimonials">
-    <h2>What our users say</h2>
-    <p>"The booking was seamess and super fast!"</p>
-    <p>"I loved the interface.Very intuitive."</p>
-</section>
-
-
-<footer>
-    <p>&copy; 2025 busbooking. All rights reserved.</p>
-</footer>
-
-
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
